@@ -1,0 +1,43 @@
+========================
+7-base_geometry.py Module
+========================
+
+This module defines a base geometry class `BaseGeometry` with methods for calculating the area and performing integer validation.
+
+`BaseGeometry` Class
+--------------------
+
+The `BaseGeometry` class is a base class for geometry-related classes. It provides the following methods:
+
+- `area(self)`: Raises an exception with the message "area() is not implemented." This method is meant to be overridden by subclasses to calculate the area of specific geometric shapes.
+
+- `integer_validator(self, name, value)`: Validates an integer value. It takes two arguments:
+  - `name`: A string representing the name of the value being validated.
+  - `value`: The value to be validated.
+
+  If `value` is not an integer, it raises a `TypeError` exception with a message that includes the `name`. If `value` is less than or equal to 0, it raises a `ValueError` exception with a message that includes the `name`.
+
+Usage
+-----
+
+You can create subclasses of `BaseGeometry` to represent specific geometric shapes and implement the `area` method for each shape. The `integer_validator` method can be used to validate integer values in these subclasses.
+
+Example:
+```python
+class Rectangle(BaseGeometry):
+    def __init__(self, width, height):
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
+        self.__width = width
+        self.__height = height
+
+    def area(self):
+        return self.__width * self.__height
+
+# Create a Rectangle instance
+rectangle = Rectangle(5, 7)
+
+# Calculate the area of the rectangle
+area = rectangle.area()
+print("Area of the rectangle:", area)
+
